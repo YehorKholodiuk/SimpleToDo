@@ -24,6 +24,10 @@ function App() {
         setTasks([...tasks,newTask])
         setNewTaskInput('')
     }
+    function deleteThisTask(id){
+    const updatedTasks = tasks.filter(e => e.id !== id)
+        setTasks(updatedTasks)
+    }
     return (
         <div>
             <h1>To Do List</h1>
@@ -32,7 +36,10 @@ function App() {
                    onChange={(e) => setNewTaskInput(e.target.value)}
             />
             <button onClick={addToList}>Add To List</button>
-            <ul>{tasks.map(e => <li>{e.task}</li>)}</ul>
+            <ul>{tasks.map(e => <li>
+                {e.task}
+                <button onClick={() => deleteThisTask(e.id)}>Delete this</button></li>)}
+            </ul>
         </div>
     );
 }
