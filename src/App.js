@@ -22,6 +22,7 @@ function App() {
     function addToList(){
         const newTask = {id: nanoid(), task:newTaskInput}
         setTasks([...tasks,newTask])
+        setNewTaskInput('')
     }
     return (
         <div>
