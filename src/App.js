@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import {nanoid} from "nanoid";
 import {useState} from "react";
+import TaskItem from "./TaskItem";
 
 function App() {
     const [tasks, setTasks] = useState([
@@ -28,6 +29,7 @@ function App() {
     const updatedTasks = tasks.filter(e => e.id !== id)
         setTasks(updatedTasks)
     }
+    //const [openEditform,setOpenEditForm] = useState(false)
     return (
         <div>
             <h1>To Do List</h1>
@@ -35,10 +37,9 @@ function App() {
                    value ={newTaskInput}
                    onChange={(e) => setNewTaskInput(e.target.value)}
             />
-            <button onClick={addToList}>Add To List</button>
-            <ul>{tasks.map(e => <li>
-                {e.task}
-                <button onClick={() => deleteThisTask(e.id)}>Delete this</button></li>)}
+            <button onClick={addToList} disabled={!newTaskInput}>Add To List</button>
+            <ul>{tasks.map(task => <TaskItem task={task}deleteThisTask={deleteThisTask}/>
+            )}
             </ul>
         </div>
     );
