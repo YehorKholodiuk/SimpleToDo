@@ -11,7 +11,7 @@ const TaskItem = (props) => {
 
                 <input type="text"/>
                 <button>Save</button>
-                <button>Cancel</button>
+                <button onClick={() => setOpenEditForm(!openEditForm)} >Cancel</button>
 
             </div>}
 
