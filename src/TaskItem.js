@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
 
 const TaskItem = (props) => {
-    const [openEditForm,setOpenEditForm] = useState(false)
+    const [openEditForm,setOpenEditForm] = useState(false);
+    const [taskToUpdate, setTaskToUpdate] = useState(props.task.task);
+
+    function saveButtonHandler(){
+        props.updateTask(taskToUpdate,props.task.id);
+        setOpenEditForm(!openEditForm)
+    }
     return (
         <li>
             {props.task.task}
@@ -9,8 +15,8 @@ const TaskItem = (props) => {
             { !openEditForm && <button onClick={() => setOpenEditForm(!openEditForm)}>Update it</button>}
             { openEditForm &&<div>
 
-                <input type="text"/>
-                <button>Save</button>
+                <input type="text" value={taskToUpdate} onChange={e => setTaskToUpdate(e.target.value)}/>
+                <button onClick={saveButtonHandler}>Save</button>
                 <button onClick={() => setOpenEditForm(!openEditForm)} >Cancel</button>
 
             </div>}
