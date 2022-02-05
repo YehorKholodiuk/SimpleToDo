@@ -6,7 +6,7 @@ const TaskItem = (props) => {
         <li>
             {props.task.task}
             <button onClick={() => props.deleteThisTask(props.task.id)}>Delete this</button>
-            <button onClick={() => setOpenEditForm(!openEditForm)}>Update it</button>
+            { !openEditForm && <button onClick={() => setOpenEditForm(!openEditForm)}>Update it</button>}
             { openEditForm &&<div>
 
                 <input type="text"/>
