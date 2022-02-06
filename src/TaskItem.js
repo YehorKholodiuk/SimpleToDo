@@ -13,10 +13,13 @@ const TaskItem = (props) => {
             {props.task.task}
             <button onClick={() => props.deleteThisTask(props.task.id)}>Delete this</button>
             { !openEditForm && <button onClick={() => setOpenEditForm(!openEditForm)}>Update it</button>}
+            {props.index !== 0 ? <button onClick={() => props.upTask(props.task.id)}>Up</button> : null}
+            {props.index !== props.task.length - 1 ? <button onClick={() => props.downTask(props.task.id)}>Down</button> : null}
             { openEditForm &&<div>
 
                 <input type="text" value={taskToUpdate} onChange={e => setTaskToUpdate(e.target.value)}/>
                 <button onClick={saveButtonHandler}>Save</button>
+
                 <button onClick={() => setOpenEditForm(!openEditForm)} >Cancel</button>
 
             </div>}
